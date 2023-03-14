@@ -12,9 +12,13 @@ struct ContentView: View {
     let bet = [["35","35","35","35","35","35","35","35","35","35","35","35","2"],["35","35","35","35","35","35","35","35","35","35","35","35","2"],["35","35","35","35","35","35","35","35","35","35","35","35","2"]]
     let bet2 = [["35","35","35","35","35","35","35","35","35","35","35"],["35","35","35","35","35","35","35","35","35","35","35"]]
     @State var onbet = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+    @State var onrebet = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+    
     @State var images = ["empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty"]
+    @State var reimages = ["empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty","empty"]
     @State var chip = 1000
     @State var totalbet = 0
+    @State var totalrebet = 0
     @State var money = 3000000
     @State private var showSecondView = false
     @State private var winarray :Array<Int> = []
@@ -358,9 +362,20 @@ struct ContentView: View {
                         .resizable()
                         .scaledToFill()
                         .frame(maxWidth: 50, maxHeight: 50)
-                        .offset(x:-70)
+                        .offset(x:-90)
                         .onTapGesture{
                             clearbet()
+                        }
+                    Image("rebet")
+                        .resizable()
+                        .scaledToFill()
+                        .frame(maxWidth: 50, maxHeight: 50)
+                        .offset(x:-35)
+                        .onTapGesture{
+                            if money>=totalrebet{
+                                rebet()
+                                
+                            }
                         }
                     Image("spin")
                         .resizable()
@@ -369,6 +384,10 @@ struct ContentView: View {
                         .onTapGesture{
                             showSecondView=true
                             money-=totalbet
+                            lastbet()
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 9) {
+                                clearbet()
+                            }
                         }.fullScreenCover(isPresented: $showSecondView){
                             RollerView(showSecondView: $showSecondView, money: $money,onbet:$onbet)
                         }
@@ -436,6 +455,24 @@ struct ContentView: View {
             }
             
         }
+    }
+    func lastbet(){
+        for index in 0..<onrebet.count{
+            onrebet[index]=onbet[index]
+        }
+        for index in 0..<reimages.count{
+            reimages[index]=images[index]
+        }
+        totalrebet=totalbet
+    }
+    func rebet(){
+        for index in 0..<onbet.count{
+            onbet[index]=onrebet[index]
+        }
+        for index in 0..<images.count{
+            images[index]=reimages[index]
+        }
+        totalbet=totalrebet
     }
     func clearbet(){
         for index in 0..<onbet.count{

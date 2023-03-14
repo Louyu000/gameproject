@@ -11,6 +11,8 @@
 		B52C9134299C8573008EADBC /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52C9133299C8573008EADBC /* ContentView.swift */; };
 		B52C9136299C8576008EADBC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B52C9135299C8576008EADBC /* Assets.xcassets */; };
 		B52C9139299C8576008EADBC /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B52C9138299C8576008EADBC /* Preview Assets.xcassets */; };
+		B534EBB529BEB0F70056ED43 /* RollerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B534EBB429BEB0F70056ED43 /* RollerView.swift */; };
+		B5DE102A29C0900C005084A3 /* LosePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5DE102929C0900C005084A3 /* LosePage.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +21,8 @@
 		B52C9133299C8573008EADBC /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		B52C9135299C8576008EADBC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B52C9138299C8576008EADBC /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		B534EBB429BEB0F70056ED43 /* RollerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RollerView.swift; sourceTree = "<group>"; };
+		B5DE102929C0900C005084A3 /* LosePage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LosePage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +57,8 @@
 			children = (
 				B52C9131299C8573008EADBC /* gameprojectApp.swift */,
 				B52C9133299C8573008EADBC /* ContentView.swift */,
+				B534EBB429BEB0F70056ED43 /* RollerView.swift */,
+				B5DE102929C0900C005084A3 /* LosePage.swift */,
 				B52C9135299C8576008EADBC /* Assets.xcassets */,
 				B52C9137299C8576008EADBC /* Preview Content */,
 			);
@@ -138,6 +144,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				B52C9134299C8573008EADBC /* ContentView.swift in Sources */,
+				B5DE102A29C0900C005084A3 /* LosePage.swift in Sources */,
+				B534EBB529BEB0F70056ED43 /* RollerView.swift in Sources */,
 				B52C9132299C8573008EADBC /* gameprojectApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -267,6 +275,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"gameproject/Preview Content\"";
+				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -295,6 +304,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"gameproject/Preview Content\"";
+				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;

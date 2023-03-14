@@ -99,7 +99,7 @@ struct RollerView: View {
             winningslot=checkwin(num:rndnum)
             DispatchQueue.main.asyncAfter(deadline: .now() + 7) {
                 if trans[rndnum] > 0 {
-                    if trans[rndnum] == 140{
+                    if trans[rndnum] == 37{
                         message = "00"
                     }
                     else{

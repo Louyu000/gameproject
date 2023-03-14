@@ -19,6 +19,7 @@ struct RollerView: View {
     @Binding var onbet: Array<Int>
     @State var winningslot:Array<Int> = []
     @State var message = ""
+    @State var WIN = 0
     var body: some View {
         ZStack{
             Image("desk")
@@ -72,7 +73,7 @@ struct RollerView: View {
                     Image("numBG")
                         .resizable()
                         .scaledToFit()
-                        .frame(maxWidth: 200,maxHeight: 200)
+                        .frame(maxWidth: 300,maxHeight: 300)
                     VStack{
                         Text("轉到的數字是")
                             .fontWeight(.black)
@@ -80,14 +81,18 @@ struct RollerView: View {
                         Text("\(message)")
                             .font(.title)
                             .fontWeight(.black)
-                            .frame(maxWidth: 100,maxHeight: 70)
+                            .frame(maxWidth: 100,maxHeight: 80)
+                        Text("你贏得：\(WIN)")
+                            .fontWeight(.black)
+                            .frame(maxHeight: 70)
                         
-                    }.offset(y:30)
+                    }.offset(y:70)
                     
                 }
                 
             }
         }.onAppear{
+            WIN=0
             rndnum=Int.random(in: 0...37)
             rotateDegree += 720+Double(rndnum)/38*360
             ballrotateDegree += 720+Double(rndnum)/38*360
@@ -101,10 +106,10 @@ struct RollerView: View {
                         message = "\(trans[rndnum])"
                     }
                 }
-            }
-            DispatchQueue.main.asyncAfter(deadline: .now() + 10) {
                 for index in 0..<winningslot.count { addmoney(number:winningslot[index])
                 }
+            }
+            DispatchQueue.main.asyncAfter(deadline: .now() + 10) {
                 if money==0{
                         showThirdView=true
                 }
@@ -124,27 +129,35 @@ struct RollerView: View {
     func addmoney(number:Int){
         if (number<=36){
             money+=onbet[number]*36
+            WIN+=onbet[number]*35
         }
         else if (number<=39){
             money+=onbet[number]*3
+            WIN+=onbet[number]*2
         }
         else if (number==73||number==76||number==79||number==82||number==85||number==88||number==91||number==94||number==97||number==100||number==103||number==106){
             money+=onbet[number]*12
+            WIN+=onbet[number]*11
         }
         else if (number<=108){
             money+=onbet[number]*18
+            WIN+=onbet[number]*17
         }
         else if (number<=130){
             money+=onbet[number]*9
+            WIN+=onbet[number]*8
         }
         else if (number<=133){
             money+=onbet[number]*3
+            WIN+=onbet[number]*2
         }
         else if (number<=139){
             money+=onbet[number]*2
+            WIN+=onbet[number]
         }
         else if (number==140){
             money+=onbet[number]*36
+            WIN+=onbet[number]*35
         }
     }
 }
